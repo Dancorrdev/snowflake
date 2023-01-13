@@ -20,7 +20,26 @@ app.get("/products", (req, res) => {
   ]);
 });
 
-app.get("")
+app.get("/products/:id", (req, res) => {
+  const { id } = req.params;
+  res.json({
+    id,
+    name: "Pijama",
+    price: 65000,
+  });
+});
+
+app.get("/users", (req, res) => {
+  const { limit, offset } = req.query;
+  if (limit && offset) {
+    res.json({
+      limit,
+      offset,
+    });
+  } else {
+    res.send("No Hay Parametros");
+  }
+});
 
 app.listen(port, () => {
   console.log("mi puerto", port);
