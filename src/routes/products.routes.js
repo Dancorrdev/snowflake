@@ -3,10 +3,14 @@ const ProductsService = require("./../services/products.service");
 const router = express.Router();
 const service = new ProductsService();
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const product = await service.findById(id);
-  res.json(product);
+router.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = await service.findById(id);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get("/", async (req, res) => {
