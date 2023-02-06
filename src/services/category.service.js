@@ -11,7 +11,11 @@ class CategoryService {
     return [];
   }
 
-  async findById() {
+  async findById(id) {
+    return { id };
+  }
+
+  async update(id, changes) {
     return {
       id,
       changes,
